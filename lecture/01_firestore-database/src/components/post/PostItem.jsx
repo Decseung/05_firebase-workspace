@@ -19,7 +19,6 @@ function PostItem({ post, mode }) {
   const navigate = useNavigate();
 
   const handelPostClick = () => {
-    console.log(post.id);
     if (mode === "list") {
       // /posts/해당게시글ID
       navigate(`/posts/${post.id}`);
@@ -30,6 +29,10 @@ function PostItem({ post, mode }) {
     if (confirm("정말 삭제")) {
       await deletePost(post.id);
     }
+  };
+
+  const handlePostUpdateClick = () => {
+    navigate(`/posts/${post.id}/edit`);
   };
 
   return (
@@ -47,7 +50,7 @@ function PostItem({ post, mode }) {
       {mode === "detail" && (
         <>
           <p>{post.content}</p>
-          <button>수정</button>
+          <button onClick={handlePostUpdateClick}>수정</button>
           <button onClick={handlePostDeleteClick}>삭제</button>
         </>
       )}
